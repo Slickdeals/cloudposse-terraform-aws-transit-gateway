@@ -16,7 +16,7 @@ resource "aws_route" "keys" {
 }
 
 resource "aws_route" "count" {
-  count                  = var.route_keys_enabled ? 0 : length(local.route_config_list)
+  count                  = length(local.route_config_list)
   transit_gateway_id     = var.transit_gateway_id
   route_table_id         = local.route_config_list[count.index][0]
   destination_cidr_block = local.route_config_list[count.index][1]
